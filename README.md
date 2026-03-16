@@ -30,7 +30,7 @@ High level flow:
 
 ## Architecture Diagram
 
-https://github.com/jalejo37/Checkout_submission/blob/35e7ed28ed8e8b58ee297760fe3cfa81cf668223/Arch_Diag.png
+![image alt](https://github.com/jalejo37/Checkout_submission/blob/35e7ed28ed8e8b58ee297760fe3cfa81cf668223/Arch_Diag.png)
 
 ## Repository Structure
 

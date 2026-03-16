@@ -19,14 +19,13 @@ Directory based environments are provided under `env/dev` and `env/prod`, with d
 
 High level flow:
 
-1. A private virtual network hosts the private endpoint path.
-2. The Function App is integrated with the VNet and exposed through a private endpoint.
-3. Public network access is disabled on the Function App.
-4. The Key Vault is private only and uses private DNS for name resolution.
-5. Terraform generates a self signed CA and client certificate material, then stores it in Key Vault.
-6. The Function App uses a system assigned managed identity and Azure RBAC to read the trusted CA certificate secret from Key Vault at runtime.
-7. The application validates incoming client certificates against that trusted CA certificate.
-8. Application Insights, Log Analytics, and Azure Monitor provide observability.
+1. Internal Service calls API
+2. Private DNS Zone resolves hostname privatelink.azurewebsites.net > Private Endpoint
+3. Traffic enters Private Endpoint
+4. mTLS authentication
+5. Function App processes Request, validates payload, returns a response
+6. Monitoring 
+
 
 ## Architecture Diagram
 

@@ -1,0 +1,81 @@
+# Friendly name shown in GitHub Actions
+name: Terraform Validate and Plan Dev
+
+# Run automatically for pull requests and also allow manual runs
+on:
+  pull_request:
+    paths:
+      - 'env/**'
+      - 'module/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+# Needed for GitHub OIDC to Azure
+# id-token: write lets GitHub mint an OIDC token for this run
+# contents: read lets the workflow read the repository
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    name: Validate and Plan Dev
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      # Pull the repo code onto the runner
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Install a known Terraform version so pipeline behaviour is consistent
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.8
+
+      # Log into Azure using GitHub OIDC
+      # These are identifiers, not a client secret
+      - name: Login to Azure with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # Check Terraform formatting across the repo
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+
+      # Initialise the dev environment
+      # -input=false is better for CI so Terraform never prompts interactively
+      - name: Terraform Init
+        working-directory: ./env/dev
+        run: terraform init -input=false
+
+      # Validate Terraform syntax and internal configuration
+      - name: Terraform Validate
+        working-directory: ./env/dev
+        run: terraform validate
+
+      # Create a binary plan file
+      - name: Terraform Plan
+        working-directory: ./env/dev
+        run: terraform plan -input=false -out=tfplan
+
+      # Also create a readable text version of the plan for reviewers
+      - name: Save Terraform Plan Text
+        working-directory: ./env/dev
+        run: terraform show -no-color tfplan > tfplan.txt
+
+      # Upload both the binary plan and readable text output as artifacts
+      - name: Upload Terraform Plan Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-plan-dev
+          path: |
+            ./env/dev/tfplan
+            ./env/dev/tfplan.txt

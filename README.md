@@ -221,9 +221,18 @@ terraform destroy
 
 ## Estimated Monthly Cost
 
-A detailed cost model was not the focus of this exercise.
-Actual cost depends on region, retention settings, telemetry volume, and usage patterns.
-For a more accurate estimate, I would use the Azure Pricing Calculator for the chosen region and service configuration.
+
+Very rough dev estimate, depending on region and usage:
+
+- App Service Plan B1: £10 per month
+- Storage Account: £5 per month
+- Application Insights and Log Analytics: £5 per moth
+- Key Vault: 5 GBP per month
+- Private Endpoint: 5 GBP per month
+
+Overall rough estimate £40 per month.
+
+source: https://azure.microsoft.com/en-gb/pricing
 
 ## AI Usage and Technical Review
 

@@ -31,8 +31,8 @@ High level flow:
 ## Architecture Diagram
 
 ```
-<h2>Architecture Diagram</h2>
-<img src="Arch_Diag.png" alt="Checkout.com assessment architecture" width="1000" />
+[<h2>Architecture Diagram</h2>
+<img src="Arch_Diag.png" alt="Checkout.com assessment architecture" width="1000" />](https://github.com/jalejo37/Checkout_submission/blob/b3a72c3a11ebba14089a901a10dd8d73c1c21e8d/Arch_Diag.png)
 
 ```
 

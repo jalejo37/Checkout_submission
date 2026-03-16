@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- Targets .NET 8, which is supported by Azure Functions v4 isolated worker projects. -->
+    <TargetFramework>net8.0</TargetFramework>
+
+    <!-- Tells the build this is an Azure Functions v4 application. -->
+    <AzureFunctionsVersion>v4</AzureFunctionsVersion>
+
+    <!-- Isolated worker apps run as a normal executable rather than inside the old in process model. -->
+    <OutputType>Exe</OutputType>
+
+    <!-- Enables common .NET namespaces automatically so the code stays cleaner. -->
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Makes nullable reference checking active so missing values are handled more safely. -->
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Core package for Azure Functions isolated worker runtime. -->
+    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.21.0" />
+
+    <!-- Adds HTTP trigger support so this app can expose API style endpoints. -->
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.2.0" />
+
+    <!-- Build time tooling and analyzers for Azure Functions. -->
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.17.2" OutputItemType="Analyzer" />
+  </ItemGroup>
+</Project>

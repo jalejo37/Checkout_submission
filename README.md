@@ -94,18 +94,15 @@ Implemented endpoints:
 3. The certificate material is stored in Key Vault.
 4. The Function App has a system assigned managed identity.
 5. Azure RBAC grants that identity permission to read the trusted CA certificate secret from Key Vault.
-6. The certificate module outputs a versionless Key Vault secret URI for the CA certificate.
-7. The environment layer passes that secret URI into the Function App module.
-8. The Function App uses a Key Vault reference in `MTLS_CA_CERT_PEM` so the application can read the CA certificate through a normal app setting.
-9. At runtime, the function code validates the presented client certificate against that trusted CA certificate.
+6. The Function App uses a Key Vault reference in `MTLS_CA_CERT_PEM` so the application can read the CA certificate through a normal app setting.
+7. At runtime, the function code validates the presented client certificate against that trusted CA certificate.
 
-This means the code still reads `MTLS_CA_CERT_PEM` as an environment variable, but the value now comes from a Key Vault reference backed by managed identity and Azure RBAC rather than being passed directly from Terraform output.
 
 ## Why Private DNS Zones Are Needed
 
 - A private endpoint gives a service a private IP address, but clients still need DNS to resolve the service name to that private IP instead of a public address.
 - The private DNS zone is linked to the VNet, which allows resources in that linked private network to resolve the service privately.
-- In this submission, private DNS is used for both the Function App private endpoint and the Key Vault private endpoint.
+- Private DNS is used for both the Function App private endpoint and the Key Vault private endpoint.
 
 ## Setup and Deployment Guide
 
@@ -114,7 +111,7 @@ This means the code still reads `MTLS_CA_CERT_PEM` as an environment variable, b
 - Terraform 1.5 or later
 - Azure subscription
 - Existing Azure Storage Account and container for Terraform remote state
-- GitHub repository if using the workflow
+- GitHub repo to run workflow
 
 ### Configure Terraform Variables
 

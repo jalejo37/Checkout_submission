@@ -30,11 +30,7 @@ High level flow:
 
 ## Architecture Diagram
 
-```
-[<h2>Architecture Diagram</h2>
-<img src="Arch_Diag.png" alt="Checkout.com assessment architecture" width="1000" />](https://github.com/jalejo37/Checkout_submission/blob/b3a72c3a11ebba14089a901a10dd8d73c1c21e8d/Arch_Diag.png)
-
-```
+https://github.com/jalejo37/Checkout_submission/blob/35e7ed28ed8e8b58ee297760fe3cfa81cf668223/Arch_Diag.png
 
 ## Repository Structure
 

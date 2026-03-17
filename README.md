@@ -258,7 +258,6 @@ During development several adjustments were required:
 
 - certain suggestions proposed simplified infrastructure patterns that needed refinement to meet the networking and security requirements of the scenario. Missing DNS Zones.
 - generated snippets occasionally required restructuring to better align with the modular Terraform layout used in this repository
-- Adding Azure Icons
 
 AI assistance was mainly used to accelerate understanding and troubleshooting.
 The overall infrastructure design, Terraform module structure, networking approach, and security decisions were implemented manually and then reviewed.

@@ -264,9 +264,9 @@ The overall infrastructure design, Terraform module structure, networking approa
 
 ### Additional AI Usage
 
-AI assistance was also used to help generate the Terraform scaffolding for the `prod` environment included in the repository.
+AI assistance was also used to help generate the Terraform structure for the `prod` environment included in the repository.
 
-Because the production environment configuration largely mirrors the development environment structure, this task was mainly repetitive boilerplate rather than architectural design. AI was therefore used to accelerate the creation of the `prod` directory structure and adapt the configuration from the `dev` environment within the limited time available for the assessment.
+Because the production environment configuration largely mirrors the development environment structure, this task was mainly repetitive rather than architectural design. AI was therefore used to accelerate the creation of the `prod` directory structure and adapt the configuration from the `dev` environment within the limited time available for the assessment.
 
 ## Limitations and Future Improvements
 
